@@ -16,6 +16,8 @@ function Book(title, author, pages, read, pos){
 const submitBtn = document.querySelector('#submit');
 submitBtn.addEventListener("click", addBookToLibrary);
 
+
+
 function addBookToLibrary(){
   var title = document.querySelector('#input-title').value;
   var author = document.querySelector("#input-author").value;
@@ -26,11 +28,18 @@ function addBookToLibrary(){
   myLibrary.push(new Book(title, author, pages, read, position));//push book to array
   clearTable();//clear table
   displayLib();//display library array on webpage
+  
 }
 
 function clearTable(){
   let table = document.getElementById('myTable');
   table.innerHTML='';
+}
+
+function rBookFromArray(pos){
+  myLibrary.splice(pos, 1)
+  clearTable();
+  displayLib();
 }
 
 function displayLib(){
@@ -90,21 +99,21 @@ function displayLib(){
     var z5 = document.createElement("TD");//remove cell
     z4.setAttribute("id", "TD");
     var removeButton = document.createElement('button');
+
+  //event
+    removeButton.addEventListener("click", () => {
+      rBookFromArray(myLibrary[book]['pos']);// remove from myLibrary array and displaytable
+    });
+
+
     removeButton.innerText = "Remove";
-    removeButton.id = "removeButton";
+    removeButton.id = `removeButton`;//-#${myLibrary[book]["pos"]
     z5.appendChild(removeButton);
     y.appendChild(z5);
 
   }
 
 }
-
-// const removeButton1 = document.getElementById('#removeButton');
-// removeButton1.addEventListener("click",()=>{
-//   for(let i = 0; i < myLibrary.length; i++){
-//     myLibrary[i]['pos']==myLibrary
-//   }})
-
 
 clearTable();
 displayLib();
