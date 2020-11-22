@@ -36,8 +36,13 @@ function clearTable(){
   table.innerHTML='';
 }
 
-function rBookFromArray(pos){
-  myLibrary.splice(pos, 1)
+function rBookFromArray(title){
+  for (let i = 0; i < myLibrary.length; i++){
+    if (title == myLibrary[i]['title']) {
+    myLibrary.splice(i, 1) }
+
+  }
+   
   clearTable();
   displayLib();
 }
@@ -102,7 +107,7 @@ function displayLib(){
 
   //event
     removeButton.addEventListener("click", () => {
-      rBookFromArray(myLibrary[book]['pos']);// remove from myLibrary array and displaytable
+      rBookFromArray(myLibrary[book]['title']);// remove from myLibrary array and displaytable
     });
 
 
